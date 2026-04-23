@@ -26,24 +26,9 @@
   .wrap {
     max-width: 660px;
     margin: 0 auto;
-    padding: 0 24px 96px;
-  }
-  .hero {
-    position: relative;
-    height: 380px;
-    background-size: cover;
-    background-position: center 35%;
-    margin: 0 -24px 36px;
-    filter: grayscale(28%) contrast(0.96);
-  }
-  .hero::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(244,241,234,0) 40%, rgba(244,241,234,1) 100%);
+    padding: 48px 24px 96px;
   }
   header.site {
-    margin-top: 36px;
     border-bottom: 1px solid var(--line);
     padding-bottom: 16px;
     margin-bottom: 40px;
@@ -177,8 +162,7 @@
     font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
   }
   @media (max-width: 600px) {
-    .wrap { padding: 0 18px 72px; }
-    .hero { height: 260px; margin: 0 -18px 24px; }
+    .wrap { padding: 32px 18px 72px; }
     .scene .photo { height: 170px; }
     .scene .body { padding: 22px 20px; }
     header.site h1 { font-size: 30px; }
@@ -187,8 +171,6 @@
 </head>
 <body>
 <div class="wrap">
-  <div class="hero" style="background-image: url('https://images.unsplash.com/photo-1557045136-50ed3874553c?w=1600&q=75&auto=format&fit=crop')"></div>
-
   <header class="site">
     <div class="kicker">An Interactive Ethical Adventure</div>
     <h1>The Watch</h1>
