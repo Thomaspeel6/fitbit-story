@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Watch — A Fitbit Ethical Adventure</title>
+<style>
+  :root {
+    --bg: #f4f1ea;
+    --ink: #1c1a16;
+    --muted: #5a544a;
+    --line: #c9c1b2;
+    --accent: #8a2b2b;
+    --paper: #fbf9f3;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Iowan Old Style", "Palatino Linotype", "Palatino", Georgia, serif;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  .wrap {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 48px 24px 96px;
+  }
+  header.site {
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 16px;
+    margin-bottom: 40px;
+  }
+  header.site .kicker {
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 11px;
+    color: var(--muted);
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  }
+  header.site h1 {
+    font-size: 34px;
+    margin: 8px 0 4px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  header.site .sub {
+    font-style: italic;
+    color: var(--muted);
+    font-size: 16px;
+  }
+  .scene {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    padding: 32px 28px;
+    margin-bottom: 28px;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.03);
+  }
+  .scene h2 {
+    font-size: 22px;
+    margin: 0 0 16px;
+    font-weight: 600;
+  }
+  .scene p {
+    margin: 0 0 14px;
+  }
+  .choices {
+    list-style: none;
+    padding: 0;
+    margin: 24px 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .choices button {
+    width: 100%;
+    text-align: left;
+    background: transparent;
+    border: 1px solid var(--line);
+    padding: 14px 16px;
+    font-family: inherit;
+    font-size: 16px;
+    color: var(--ink);
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+    line-height: 1.45;
+  }
+  .choices button:hover {
+    background: #efeadc;
+    border-color: var(--ink);
+  }
+  .ending-meta {
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px dashed var(--line);
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .ending-title {
+    font-variant: small-caps;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    font-size: 14px;
+    margin-bottom: 10px;
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+    text-transform: uppercase;
+  }
+  .ending-actions {
+    margin-top: 24px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .ending-actions button {
+    background: var(--ink);
+    color: var(--paper);
+    border: none;
+    padding: 10px 16px;
+    font-family: inherit;
+    font-size: 15px;
+    cursor: pointer;
+  }
+  .ending-actions button.secondary {
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--ink);
+  }
+  .ending-actions button:hover { opacity: 0.88; }
+  .breadcrumb {
+    font-size: 12px;
+    color: var(--muted);
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+    margin-bottom: 20px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .toc {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-size: 14px;
+    color: var(--muted);
+  }
+  .toc a {
+    color: var(--muted);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .toc a:hover { color: var(--ink); }
+  .reflection h2 {
+    font-size: 24px;
+    margin: 32px 0 12px;
+    font-weight: 600;
+  }
+  .reflection h3 {
+    font-size: 18px;
+    margin: 24px 0 8px;
+    font-weight: 600;
+    color: var(--muted);
+  }
+  .reflection p { margin: 0 0 16px; }
+  footer.site {
+    margin-top: 60px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+    font-size: 13px;
+    color: var(--muted);
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  }
+  @media (max-width: 600px) {
+    .wrap { padding: 32px 18px 72px; }
+    .scene { padding: 24px 20px; }
+    header.site h1 { font-size: 28px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="site">
+    <div class="kicker">An Interactive Ethical Adventure</div>
+    <h1>The Watch</h1>
+    <div class="sub">A story about a Fitbit, a wellness program, and the small prices of being reasonable.</div>
+  </header>
+
+  <main id="app"></main>
+
+  <footer class="site">
+    By Thomas Peel · Ethics and Technology, NYU · Spring 2026
+  </footer>
+</div>
+
+<script>
+const story = {
+  start: {
+    title: "Monday Morning",
+    body: [
+      "It's Monday morning. You've been at Meridian Health for two and a half years. Long enough to know the coffee machine and the HR email patterns, not long enough to feel settled.",
+      "Your manager, Linda, drops a glossy packet on your desk. \"New wellness initiative,\" she says. \"Completely optional.\" Her smile suggests otherwise.",
+      "Inside the packet: a Fitbit Charge 6. Enroll in the MeridianWell program and you get $50 a month off your health premium. All you have to do is wear the watch and hit \"reasonable activity goals.\" The fine print uses the phrase <em>data sharing with program administrators</em>.",
+      "Linda is waiting for an answer."
+    ],
+    choices: [
+      { text: "Sign up. $50 is $50.", go: "accept" },
+      { text: "Pass. You already have a watch.", go: "decline" },
+      { text: "Ask to read the full data agreement first.", go: "ask_terms" }
+    ]
+  },
+
+  accept: {
+    title: "Three Weeks In",
+    body: [
+      "You sign the form. The Fitbit comes in two days.",
+      "The first few weeks are kind of fun. You hit your step goal most days. The little buzz when you close your activity ring feels good. You start parking farther from the building. You take stairs you never took before.",
+      "A month in, Linda stops by your desk on Monday morning. \"Rough night?\" she asks, nodding at your wrist. \"Looks like you only got four hours.\"",
+      "You didn't tell her that. The watch did."
+    ],
+    choices: [
+      { text: "Laugh it off. She's being friendly.", go: "ignore" },
+      { text: "Tell Linda that felt like an overstep.", go: "confront" },
+      { text: "Start leaving the watch on your ceiling fan overnight.", go: "game" }
+    ]
+  },
+
+  ignore: {
+    title: "Six Months Later",
+    body: [
+      "You laugh. \"Late-night Netflix,\" you say. Linda nods.",
+      "Over the next few months, the comments pile up. Your step count comes up in team stand-ups. Someone jokes about \"cardio slackers\" in the Slack channel. HR sends an email congratulating the \"top movers of Q3\" — with names.",
+      "Then, in March, you miss a sleep target two weeks in a row. Your spouse has been sick. You've been up at three a.m.",
+      "You get an email from HR: <em>MeridianWell Check-In — Mandatory.</em> Your $50 premium discount is on hold pending the meeting. The email notes that missed sleep targets \"correlate with elevated cardiovascular risk indicators.\"",
+      "You read it three times."
+    ],
+    choices: [
+      { text: "Quit. This isn't worth it.", go: "clean_break" },
+      { text: "Hire a lawyer and push back.", go: "court_case" },
+      { text: "Go to the meeting. Keep the watch on.", go: "steady_decline" }
+    ]
+  },
+
+  confront: {
+    title: "The Thin Apology",
+    ending: true,
+    tone: "uncertain",
+    body: [
+      "You tell Linda the comment felt like a lot. She looks startled, then apologetic. \"I didn't mean it like that,\" she says. \"It's just — the dashboard shows all of us. I thought it was, you know, casual.\"",
+      "The dashboard.",
+      "You didn't know there was a dashboard.",
+      "Linda promises not to mention your data again. But the data is still going somewhere. It's just that now you know it is, and she knows you know, and nothing else about the arrangement has changed.",
+      "You keep the watch on. It gets easier not to think about."
+    ],
+    tags: "Empathy · Character"
+  },
+
+  game: {
+    title: "The Fraud Charge",
+    ending: true,
+    tone: "dystopic",
+    body: [
+      "You start leaving the Fitbit on your ceiling fan at night. Steady rotational movement registers as \"active minutes.\" You're hitting your goals. You feel a little clever.",
+      "Seven weeks in, you get a message from MeridianWell Compliance. The platform flagged \"non-physiological motion patterns.\" You had signed something, buried on page 34, agreeing not to \"manipulate, simulate, or misrepresent biometric data.\"",
+      "The word your HR rep uses, in the meeting, is <em>fraud</em>.",
+      "Your termination is for cause. You don't qualify for unemployment. A background-check company now has your Fitbit data linked to the word."
+    ],
+    tags: "Fairness · Authority"
+  },
+
+  clean_break: {
+    title: "Clean Break",
+    ending: true,
+    tone: "positive",
+    body: [
+      "You put in your two weeks that Friday. Your severance is thin. You freelance for six months and it's stressful, but nobody asks about your sleep.",
+      "Your next job has no wellness program. You still wear a Fitbit sometimes — but just for the step counter, not linked to anything. You own your data again, which turns out to be a strange thing to have had to reclaim.",
+      "Sometimes, when an article about employer wellness programs shows up in your feed, you feel a small, unaccountable relief."
+    ],
+    tags: "Liberty · Authority"
+  },
+
+  court_case: {
+    title: "The Case",
+    ending: true,
+    tone: "uncertain",
+    body: [
+      "You find a lawyer who thinks the case has legs. Meridian's data-sharing clause is sloppy. ERISA has gaps. Eighteen months of depositions later, you walk away with a settlement and an NDA.",
+      "You can't talk about what happened. You can't post about it. Your old industry has a short memory for names, but a long memory for <em>difficult</em>. You get a new job. You don't trust them yet.",
+      "You won. Probably. It's hard to say."
+    ],
+    tags: "Rights · Responsibilities"
+  },
+
+  steady_decline: {
+    title: "The Steady Decline",
+    ending: true,
+    tone: "dystopic",
+    body: [
+      "The check-in goes fine. You explain. They note it. Your discount comes back.",
+      "A year later, Meridian rolls out MeridianWell 2.0. Heart rate variability. Stress metrics. The watch stays on during performance reviews now. \"Don't worry,\" HR writes, \"elevated readings aren't used against you.\" Everyone knows what <em>used against you</em> is doing in that sentence.",
+      "Your next employer, two years after that, asks for your wellness history during onboarding. It's standard now. You click share.",
+      "You stop noticing the watch. That is, in its way, the point."
+    ],
+    tags: "Authority · Outcomes"
+  },
+
+  decline: {
+    title: "The Quiet Cost",
+    ending: true,
+    tone: "uncertain",
+    body: [
+      "You tell Linda thanks, but no. She says \"totally fine,\" in the tone people use when something is, in fact, being noted.",
+      "Months pass. The MeridianWell folks get premium discounts. You don't. In your annual review, Linda mentions \"team engagement\" — twice. You get passed over for a promotion in Q3. You can't prove it's because of the watch. You're fairly sure.",
+      "You stay anyway. You pay full premiums. You sleep well, in every sense.",
+      "Two years later, a MeridianWell data breach exposes eighty thousand employees' sleep, stress, and heart-rate data to the open internet. You are not on the list.",
+      "It is possibly the most satisfying email you have ever deleted."
+    ],
+    tags: "Liberty · Responsibilities"
+  },
+
+  ask_terms: {
+    title: "Section 8.3.b",
+    body: [
+      "You ask HR to send the full agreement. The PDF is forty-seven pages. You read it.",
+      "Section 8.3.b: <em>Meridian Health may share de-identified, aggregated biometric data with affiliated partners, including underwriting entities, for the purpose of improving benefits design.</em>",
+      "De-identified. Aggregated. Affiliated partners. Underwriting.",
+      "You read it again.",
+      "You bring it up in the kitchen. Two coworkers look uncomfortable. One says, \"oh, I didn't read that part.\" Another says, \"I mean, they probably already have our data.\""
+    ],
+    choices: [
+      { text: "Bring it to HR as a group.", go: "organize" },
+      { text: "Quietly decline and move on.", go: "decline" }
+    ]
+  },
+
+  organize: {
+    title: "Something You Did",
+    ending: true,
+    tone: "positive",
+    body: [
+      "You find six colleagues willing to sign a letter. You keep it professional: concerns about clause 8.3.b, a request for clarification, a suggestion that enrollment be truly opt-in with a clear data map.",
+      "HR meets with you. Twice. The second time, they bring a VP. The program gets amended: no underwriting partners, a clear list of what is collected, and an opt-out that doesn't affect premiums.",
+      "You become, informally, the person people ask about these things. Three other departments copy your template. Linda, to her credit, tells you she's glad you did it. She says she didn't know.",
+      "You're not sure you believe her. But the program is better. And you did that."
+    ],
+    tags: "Authority · Empathy · Fairness"
+  }
+};
+
+const TONE_LABEL = {
+  positive: "A Positive Ending",
+  uncertain: "An Uncertain Ending",
+  dystopic: "A Dystopic Ending"
+};
+
+const app = document.getElementById("app");
+const path = [];
+
+function render(nodeKey) {
+  const node = story[nodeKey];
+  if (!node) return;
+  path.push(nodeKey);
+  const isEnding = !!node.ending;
+
+  let html = "";
+
+  html += `<div class="scene">`;
+  if (isEnding) {
+    html += `<div class="ending-title">${TONE_LABEL[node.tone] || "An Ending"}</div>`;
+  }
+  html += `<h2>${node.title}</h2>`;
+  node.body.forEach(p => { html += `<p>${p}</p>`; });
+
+  if (isEnding) {
+    html += `<div class="ending-meta">${node.tags}</div>`;
+    html += `
+      <div class="ending-actions">
+        <button onclick="restart()">Start over</button>
+        <button class="secondary" onclick="showReflection()">Read the reflection</button>
+      </div>
+    `;
+  } else if (node.choices) {
+    html += `<ul class="choices">`;
+    node.choices.forEach((c, i) => {
+      html += `<li><button onclick="choose('${c.go}')">${c.text}</button></li>`;
+    });
+    html += `</ul>`;
+  }
+  html += `</div>`;
+
+  app.innerHTML = html;
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function choose(key) {
+  render(key);
+}
+
+function restart() {
+  path.length = 0;
+  render("start");
+}
+
+function showReflection() {
+  const html = `
+    <div class="scene reflection">
+      <div class="kicker" style="text-transform: uppercase; letter-spacing: 0.18em; font-size: 11px; color: var(--muted); font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif; margin-bottom: 6px;">Author's Reflection</div>
+      <h2 style="margin-top:0;">Why I Made This</h2>
+
+      <p>When I think about Fitbit, I don't think about jogging. I think about the woman in Connecticut in 2015 whose Fitbit data contradicted her story about an intruder. She was charged with murder. The watch on her wrist, which she had bought herself, for reasons presumably personal, had become a witness against her.</p>
+
+      <p>That case is the quiet horizon line of this project. Once health data leaves your body, it stops being health data. It's evidence. It's an underwriting signal. It's a row in someone's quarterly report. The ethics of wearables isn't really about whether a Fitbit is good or bad. It's about what the thing on your wrist becomes once you're not the only one looking at it.</p>
+
+      <h3>Why a game, and not an essay</h3>
+
+      <p>I built this as an interactive story because abstract ethical trade-offs don't land the way a specific decision does. When someone reads an op-ed about "employer surveillance," they nod and scroll. When they click <em>Sign up — $50 is $50</em> in a browser and end up in front of an HR email flagging their sleep data, the stakes move from their head to their stomach. That shift — from thinking about ethics to feeling them — is what I wanted.</p>
+
+      <p>The structure is stolen, openly, from <em>Welcome to Vanguard Estates</em>. That story's trick is that every choice feels reasonable at the moment you make it and monstrous by the end. I tried to keep the same discipline. None of the seven endings here hinges on the player being careless or greedy. They hinge on the player being normal — grateful for a discount, reluctant to make a scene, trusting that HR means well, not wanting to read forty-seven pages of PDF.</p>
+
+      <h3>Authority as the through-line</h3>
+
+      <p>The Eighth Key Question I kept returning to is <em>Authority</em>. Linda has authority over the player, but it's role-based authority — she didn't design the wellness program, she just enforces it. HR has the authority of expertise, or really, the authority of being the only people in the room who've read the terms of service. Meridian as a company has contractual authority, built into a sentence buried under "de-identified aggregated biometric data." None of these feel illegitimate on their own. Stack them up in a single story and you start to notice how much of the player's life is being governed by people whose right to govern it was never really earned.</p>
+
+      <p>The <em>Organize</em> ending is the only branch where the player reclaims legitimate authority — by building collective standing and negotiating for clearer terms. That's not an accident. James Madison's framework treats authority as worth interrogating precisely because it can be legitimate or illegitimate depending on where it comes from. In this story, position-based authority (Linda, HR, the CEO) gets a lot of space. Expertise-based, collectively-earned authority only shows up when the player makes it show up.</p>
+
+      <h3>What the branches are doing</h3>
+
+      <p>Several course ideas sit underneath the branches without announcing themselves. The <em>Game the data</em> path is a direct nod to Goodhart's Law from the Metrics & Ethics week: when a measure becomes a target, it stops being a good measure. The player gaming their Fitbit isn't really different from a school juking its test scores — except the Fitbit version comes with a fraud charge. The <em>Steady Decline</em> ending borrows from surveillance readings like David Lyon's: the danger isn't any single act of surveillance, it's the slow normalization that makes the watch unremarkable. The <em>Case</em> ending draws on Week 12's healthcare material, specifically the HIPAA gap: wearables collect data that looks medical but isn't regulated as medical data, so legal recourse is uneven and slow.</p>
+
+      <p>I also wanted bodily autonomy to do real work in the story, not just live in the reflection. <em>The Quiet Cost</em> ending — the player who declines the program, pays higher premiums, and gets passed over for a promotion — is the ending most people will tell you is the "correct" one. It's the Liberty answer. But it costs something. The player who chooses it doesn't get a victory lap; they get a life that's slightly harder in exchange for a life that's their own. I didn't want to let that choice off easy.</p>
+
+      <h3>How I want someone to read it</h3>
+
+      <p>The one thing I made sure the game doesn't do is offer an "opt out of everything" ending that feels costless. Every ending, including the positive ones, requires something — leaving a job, organizing coworkers, paying more. I think that's honest. Privacy, in 2026, is not a default setting. It is a thing you pay for.</p>
+
+      <p>I chose an interactive web page rather than an essay because ethics is usually encountered as decisions, not as arguments. You don't read a 1500-word paper and then refuse a Fitbit. You're standing at your desk on a Monday morning with a packet in your hand and your manager watching, and you say yes or no. I wanted a reader of this project to feel the speed of that moment, and then the slowness of what follows.</p>
+
+      <p>If the game works, the player will finish one path, click back, and take another. That second click is where the ethics live. The first click is a choice; the second click is the moment you notice that you're someone who makes choices like this.</p>
+
+      <div class="ending-actions">
+        <button onclick="restart()">Start the story again</button>
+      </div>
+    </div>
+  `;
+  app.innerHTML = html;
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+// Expose for inline handlers
+window.choose = choose;
+window.restart = restart;
+window.showReflection = showReflection;
+
+render("start");
+</script>
+</body>
+</html>
