@@ -153,6 +153,71 @@
     color: var(--muted);
   }
   .reflection p { margin: 0 0 16px; }
+  .tree {
+    font-family: "SF Mono", "Menlo", "Consolas", monospace;
+    font-size: 13px;
+    line-height: 1.55;
+    background: #f4efe3;
+    border: 1px solid var(--line);
+    padding: 20px 22px;
+    margin: 16px 0 24px;
+    overflow-x: auto;
+  }
+  .tree ul {
+    list-style: none;
+    margin: 0;
+    padding: 0 0 0 18px;
+    position: relative;
+  }
+  .tree > ul { padding-left: 0; }
+  .tree li {
+    position: relative;
+    padding: 4px 0 4px 18px;
+  }
+  .tree > ul > li { padding-left: 0; }
+  .tree ul ul li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 50%;
+    width: 12px;
+    border-left: 1px solid #b8b0a0;
+    border-bottom: 1px solid #b8b0a0;
+  }
+  .tree ul ul li:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    bottom: -4px;
+    border-left: 1px solid #b8b0a0;
+  }
+  .tree .node {
+    display: inline-block;
+  }
+  .tree .decision { font-weight: 600; color: var(--ink); }
+  .tree .scene-link { color: var(--ink); }
+  .tree .end {
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .tree .badge {
+    display: inline-block;
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 1px 6px;
+    border-radius: 2px;
+    margin-left: 6px;
+    vertical-align: 1px;
+    font-weight: 600;
+  }
+  .badge-positive { background: #d8e5cf; color: #3d5a2b; }
+  .badge-uncertain { background: #ece5cf; color: #6a5a2a; }
+  .badge-dystopic { background: #e8ccc9; color: #7a2a24; }
+  .tree .merge { color: var(--muted); font-style: italic; }
   footer.site {
     margin-top: 60px;
     padding-top: 20px;
@@ -413,6 +478,39 @@ function showReflection() {
         <p>When I think about Fitbit, I don't think about jogging. I think about the woman in Connecticut in 2015 whose Fitbit data contradicted her story about an intruder. She was charged with murder. The watch on her wrist, which she had bought herself for reasons presumably personal, had become a witness against her.</p>
 
         <p>That case is the quiet horizon line of this project. Once health data leaves your body, it stops being health data. It's evidence. It's an underwriting signal. It's a row in someone's quarterly report. The ethics of wearables isn't really about whether a Fitbit is good or bad. It's about what the thing on your wrist becomes once you're not the only one looking at it.</p>
+
+        <h3>The story map</h3>
+
+        <p>Every path from the opening choice, with ending tones marked.</p>
+
+        <div class="tree">
+          <ul>
+            <li><span class="decision">Monday Morning</span>
+              <ul>
+                <li><span class="scene-link">Sign up → Three Weeks In</span>
+                  <ul>
+                    <li><span class="scene-link">Laugh it off → Six Months Later</span>
+                      <ul>
+                        <li><span class="end">Quit → Clean Break</span><span class="badge badge-positive">Positive</span></li>
+                        <li><span class="end">Sue → The Case</span><span class="badge badge-uncertain">Uncertain</span></li>
+                        <li><span class="end">Comply → The Steady Decline</span><span class="badge badge-dystopic">Dystopic</span></li>
+                      </ul>
+                    </li>
+                    <li><span class="end">Confront Linda → The Thin Apology</span><span class="badge badge-uncertain">Uncertain</span></li>
+                    <li><span class="end">Game the data → The Fraud Charge</span><span class="badge badge-dystopic">Dystopic</span></li>
+                  </ul>
+                </li>
+                <li><span class="end">Pass → The Quiet Cost</span><span class="badge badge-uncertain">Uncertain</span></li>
+                <li><span class="scene-link">Ask for terms → Section 8.3.b</span>
+                  <ul>
+                    <li><span class="end">Organize coworkers → Something You Did</span><span class="badge badge-positive">Positive</span></li>
+                    <li><span class="merge">Decline quietly → merges into The Quiet Cost</span></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
 
         <h3>Why a game, and not an essay</h3>
 
