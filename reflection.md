@@ -24,7 +24,7 @@ Every path from the opening choice, with ending tones marked.
         - Game the data → **The Fraud Charge** *(Dystopic)*
     - Pass → **The Quiet Cost** *(Uncertain)*
     - Ask for terms → Section 8.3.b
-        - Organize coworkers → **Something You Did** *(Positive)*
+        - Organise coworkers → **Something You Did** *(Positive)*
         - Decline quietly → merges into **The Quiet Cost**
 
 # Why I made it a game
