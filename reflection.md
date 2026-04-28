@@ -49,6 +49,8 @@ The Case ending is about the gap wearables sit in. They collect data that looks 
 
 # The one ending that's actually honest
 
-The Quiet Cost is the ending everyone wants to be the right answer. The player declines, pays full premiums, keeps their data. That's the Liberty ending. But I didn't want to let it off easy. The player who picks it also gets passed over for a promotion and pays more every month for no reason. Privacy, in 2026, isn't a default setting. It's a thing you pay for.
+The Quiet Cost is the ending most people would tell you is the right one. You opt out, you keep your data, you walk away. On paper that's the clean answer, the Liberty answer, the player keeps their autonomy.
 
-That's the honest part. Every good ending in the story costs something. Quitting the job. Organizing coworkers. Paying more. There isn't an opt-out that works for free. If the game does its job, the player finishes one path and then clicks back and tries another, and somewhere in that second click they realize they're someone who makes choices like this.
+But the story doesn't let it off the hook. The player who picks that path pays full premiums every month and gets passed over for a promotion they probably should've gotten. They didn't do anything wrong. They just kept their data to themselves, and that turns out to cost real money. In 2026, privacy isn't the default anymore, it's basically a paid tier.
+
+That's the part I wanted to be honest about. Every ending in the story has a price tag. Clean Break costs you the job. Organise costs you time, and the political risk of being the person who started something. Even The Quiet Cost, which looks like the easy out, is quietly charging you every month forever. There's nowhere in this story you can land for free, and that's on purpose. If the game does its job, the player finishes one path, clicks back, tries another, and somewhere in that second click realises every door has a tax on it.
